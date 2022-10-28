@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model employee_salary {
+  id              Int     @id @default(autoincrement())
+  emp_id          Int
+  emp_name        String
+  month           Decimal @db.Decimal(2, 0)
+  year            Decimal @db.Decimal(4, 0)
+  total_salary    Decimal @db.Decimal(10, 2)
+  epf             Decimal @db.Decimal(10, 2)
+  etf             Decimal @db.Decimal(10, 2)
+  tax_reduction   Decimal @db.Decimal(10, 2)
+  other_reduction Decimal @db.Decimal(10, 2)
+  net_salary      Decimal @db.Decimal(10, 2)
+  archived        Boolean @default(false)
+}
+
+model employee_salary_log {
+  id        Int    @id @default(autoincrement())
+  record_id Int
+  operation String
+  new_val   Json   @db.Json
+  old_val   Json   @db.Json
+}
