@@ -2,7 +2,9 @@ type Query {
   salary_records: [employee_salary!]!
 }
 
-
+type Mutation {
+  unarchive(id:ID!): employee_salary
+}
 
 type employee_salary {
   id: ID!
