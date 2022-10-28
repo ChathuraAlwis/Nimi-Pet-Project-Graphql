@@ -1,0 +1,30 @@
+{
+  "name": "nimi-pet-project-graphql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "devStart": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChathuraAlwis/Nimi-Pet-Project-Graphql.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChathuraAlwis/Nimi-Pet-Project-Graphql/issues"
+  },
+  "homepage": "https://github.com/ChathuraAlwis/Nimi-Pet-Project-Graphql#readme",
+  "dependencies": {
+    "@prisma/client": "^4.5.0",
+    "apollo-server": "^3.10.3",
+    "graphql": "^16.6.0",
+    "nodemon": "^2.0.20"
+  },
+  "devDependencies": {
+    "prisma": "^4.5.0"
+  }
+}
