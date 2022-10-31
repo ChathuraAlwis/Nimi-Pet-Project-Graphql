@@ -9,10 +9,10 @@ module.exports = {
       const salary_records = await prisma.employee_salary.findMany()
       return salary_records
     },
-    select_archived: async() => {
+    select_unarchived: async() => {
       const salary_records = await prisma.employee_salary.findMany({
         where: {
-          archived: true
+          archived: false
         }
       })
       return salary_records
