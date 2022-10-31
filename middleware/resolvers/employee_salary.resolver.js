@@ -13,15 +13,19 @@ module.exports = {
 
   Mutation: {
     archive: async(parent, args) => {
-      const archived_record = await prisma.employee_salary.update({
-        where: {
-          id: parseInt(args.id)
-        },
-        data: {
-          archived: true
-        }
-      })
-      return archived_record
+      try {
+        const archived_record = await prisma.employee_salary.update({
+          where: {
+            id: parseInt(args.id)
+          },
+          data: {
+            archived: true
+          }
+        })
+        return archived_record
+      } catch (error) {
+        return null
+      }
     }
   }
 
