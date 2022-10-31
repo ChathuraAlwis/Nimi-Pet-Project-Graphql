@@ -1,5 +1,6 @@
 type Query {
   salary_records: [employee_salary!]!
+  select_archived: [employee_salary!]!
 }
 
 
