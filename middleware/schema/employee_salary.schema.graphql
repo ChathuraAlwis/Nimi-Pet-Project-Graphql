@@ -1,10 +1,15 @@
+scalar Upload
+
 type Query {
   salary_records: [employee_salary!]!
-  download_record(id: ID!): download_link!
 }
 
-type download_link {
-  url: String!
+type Mutation {
+  upload_csv(file: Upload!): inserted_record_count!
+}
+
+type inserted_record_count {
+  count: Int!
 }
 
 type employee_salary {
