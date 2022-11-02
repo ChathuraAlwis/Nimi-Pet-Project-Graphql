@@ -1,8 +1,11 @@
 type Query {
   salary_records: [employee_salary!]!
+  download_record(id: ID!): download_link!
 }
 
-
+type download_link {
+  url: String!
+}
 
 type employee_salary {
   id: ID!
