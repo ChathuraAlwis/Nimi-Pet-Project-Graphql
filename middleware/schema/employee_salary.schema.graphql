@@ -2,14 +2,36 @@ scalar Upload
 
 type Query {
   salary_records: [employee_salary!]!
-}
-
-type Mutation {
-  upload_csv(file: Upload!): inserted_record_count!
+  select_unarchived: [employee_salary!]!
+  select_archived: [employee_salary!]!
+  download_record(id: ID!): download_link!
 }
 
 type inserted_record_count {
   count: Int!
+}
+
+type Mutation {
+  upload_csv(file: Upload!): inserted_record_count!
+  update(
+    id: ID!,
+    emp_id: ID,
+    emp_name: String,
+    month: Int,
+    year: Int,
+    total_salary: Float,
+    epf: Float,
+    etf: Float,
+    tax_reduction: Float,
+    other_reduction: Float
+  ): employee_salary
+  delete_record(id: ID!): employee_salary
+  archive(id: ID!): employee_salary
+  unarchive(id:ID!): employee_salary
+}
+
+type download_link {
+  url: String!
 }
 
 type employee_salary {

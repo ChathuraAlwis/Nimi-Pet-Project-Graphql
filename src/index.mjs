@@ -24,7 +24,7 @@ async function createApp(){
   
   const app = express()
   app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }))
-
+  app.use('/employee_salary', router)
   
   await server.start()
   server.applyMiddleware({ app })
