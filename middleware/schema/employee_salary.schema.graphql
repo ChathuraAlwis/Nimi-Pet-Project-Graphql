@@ -1,3 +1,5 @@
+scalar Upload
+
 type Query {
   salary_records: [employee_salary!]!
   select_unarchived: [employee_salary!]!
@@ -5,7 +7,12 @@ type Query {
   download_record(id: ID!): download_link!
 }
 
+type inserted_record_count {
+  count: Int!
+}
+
 type Mutation {
+  upload_csv(file: Upload!): inserted_record_count!
   update(
     id: ID!,
     emp_id: ID,

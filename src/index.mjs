@@ -7,7 +7,8 @@ const { ApolloServer } = require("apollo-server-express");
 const fs = require('fs');
 const path = require('path');
 const { server_config } = require('./config/server.config.js')
-const router = require('./routes/router')
+const router = require('./routes/router.js')
+import graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.mjs';
 
 // resolvers
 import employee_salary_resolver from '../middleware/resolvers/employee_salary.resolver.mjs'
@@ -22,6 +23,7 @@ async function createApp(){
   })
   
   const app = express()
+  app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }))
   app.use('/employee_salary', router)
   
   await server.start()
