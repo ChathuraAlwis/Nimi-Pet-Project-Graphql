@@ -69,10 +69,25 @@ const emp_salary_resolver = {
         return archived_record
       } catch (error) {
         return null
-      }
+      },
     },
+    unarchive: async(parent, args) => {
+      try {
+        const unarchived_record = prisma.employee_salary.update({
+          where: {
+            id: parseInt(args.id)
+          },
+          data: {
+            archived: false
+          }
+        })
+        return unarchived_record
+      } catch (error) {
+        return null
+      }
+    }
   }
-  
+
 }
 
 export default emp_salary_resolver
