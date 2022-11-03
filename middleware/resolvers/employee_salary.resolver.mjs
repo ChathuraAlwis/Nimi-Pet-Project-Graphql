@@ -11,7 +11,24 @@ const emp_salary_resolver = {
       const salary_records = await prisma.employee_salary.findMany()
       return salary_records
     },
-    
+  },
+
+  Mutation: {
+    archive: async(parent, args) => {
+      try {
+        const archived_record = await prisma.employee_salary.update({
+          where: {
+            id: parseInt(args.id)
+          },
+          data: {
+            archived: true
+          }
+        })
+        return archived_record
+      } catch (error) {
+        return null
+      }
+    },
     download_record: async(parent, args) => {
       const record_exists = await prisma.employee_salary.count({
         where: {
@@ -26,7 +43,6 @@ const emp_salary_resolver = {
 
       return download_link
     }
-  },
-}
+  }
 
 export default emp_salary_resolver
