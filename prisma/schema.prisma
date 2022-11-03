@@ -11,8 +11,8 @@ model employee_salary {
   id              Int     @id @default(autoincrement())
   emp_id          Int
   emp_name        String
-  month           Decimal @db.Decimal(2, 0)
-  year            Decimal @db.Decimal(4, 0)
+  month           Int
+  year            Int
   total_salary    Decimal @db.Decimal(10, 2)
   epf             Decimal @db.Decimal(10, 2)
   etf             Decimal @db.Decimal(10, 2)
@@ -26,6 +26,6 @@ model employee_salary_log {
   id        Int    @id @default(autoincrement())
   record_id Int
   operation String
-  new_val   Json   @db.Json
-  old_val   Json   @db.Json
+  new_val   Json?   @db.Json
+  old_val   Json?   @db.Json
 }

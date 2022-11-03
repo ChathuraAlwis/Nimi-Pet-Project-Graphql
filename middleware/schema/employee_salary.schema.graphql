@@ -1,9 +1,18 @@
 type Query {
   salary_records: [employee_salary!]!
+  select_unarchived: [employee_salary!]!
+  select_archived: [employee_salary!]!
+  download_record(id: ID!): download_link!
 }
 
 type Mutation {
+  delete_record(id: ID!): employee_salary
+  archive(id: ID!): employee_salary
   unarchive(id:ID!): employee_salary
+}
+
+type download_link {
+  url: String!
 }
 
 type employee_salary {
