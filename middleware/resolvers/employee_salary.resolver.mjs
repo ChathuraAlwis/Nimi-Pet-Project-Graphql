@@ -44,5 +44,6 @@ const emp_salary_resolver = {
       return download_link
     }
   }
+}
 
 export default emp_salary_resolver
