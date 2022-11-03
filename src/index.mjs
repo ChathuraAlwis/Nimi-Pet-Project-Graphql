@@ -1,3 +1,7 @@
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+import * as url from 'url';
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 const express = require('express')
 const { ApolloServer } = require("apollo-server-express");
 const fs = require('fs');
@@ -6,7 +10,7 @@ const { server_config } = require('./config/server.config')
 const router = require('./routes/router')
 
 // resolvers
-const employee_salary_resolver = require('../middleware/resolvers/employee_salary.resolver')
+import employee_salary_resolver from '../middleware/resolvers/employee_salary.resolver.mjs'
 
 async function createApp(){
   const server = new ApolloServer({

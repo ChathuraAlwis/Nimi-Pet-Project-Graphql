@@ -2,9 +2,9 @@
   "name": "nimi-pet-project-graphql",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.mjs",
   "scripts": {
-    "devStart": "nodemon src/index.js",
+    "devStart": "nodemon src/index.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
