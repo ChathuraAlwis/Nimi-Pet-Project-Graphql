@@ -23,7 +23,6 @@ async function createApp(){
   
   const app = express()
   app.use('/employee_salary', router)
-
   
   await server.start()
   server.applyMiddleware({ app })
