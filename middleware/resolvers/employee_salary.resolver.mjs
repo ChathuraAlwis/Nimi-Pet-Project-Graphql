@@ -1,9 +1,11 @@
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient()
 
 
 
-module.exports = {
+const emp_salary_resolver = {
   Query: {
     salary_records: async() => {
       const salary_records = await prisma.employee_salary.findMany()
@@ -19,3 +21,5 @@ module.exports = {
     },
   },
 }
+
+export default emp_salary_resolver
