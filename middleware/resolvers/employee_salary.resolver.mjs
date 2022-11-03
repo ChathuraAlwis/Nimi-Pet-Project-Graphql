@@ -17,6 +17,7 @@ const emp_salary_resolver = {
           archived: false
         }
       })
+      return salary_records
     },
     select_archived: async() => {
       const salary_records = await prisma.employee_salary.findMany({
