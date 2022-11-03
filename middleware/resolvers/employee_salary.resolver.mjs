@@ -17,7 +17,7 @@ function streamToString (stream) {
   })
 }
 
-const emp_salary_resolvers = {
+const emp_salary_resolver = {
 
   Upload: GraphQLUpload,
 
@@ -96,7 +96,7 @@ const emp_salary_resolvers = {
         return archived_record
       } catch (error) {
         return null
-      },
+      }
     },
     unarchive: async(parent, args) => {
       try {
