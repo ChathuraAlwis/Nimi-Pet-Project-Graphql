@@ -28,6 +28,18 @@ const emp_salary_resolver = {
   },
 
   Mutation: {
+    delete_record: async(parent, args) => {
+      try {
+        const deleted_record = await prisma.employee_salary.delete({
+          where: {
+            id: parseInt(args.id)
+          }
+        })
+        return deleted_record
+      } catch (error) {
+        return null
+      }
+    },
     archive: async(parent, args) => {
       try {
         const archived_record = await prisma.employee_salary.update({
@@ -44,6 +56,8 @@ const emp_salary_resolver = {
       }
     },
   }
+
 }
+
 
 export default emp_salary_resolver

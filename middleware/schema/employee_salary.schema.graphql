@@ -4,6 +4,7 @@ type Query {
 }
 
 type Mutation {
+  delete_record(id: ID!): employee_salary
   archive(id: ID!): employee_salary
 }
 

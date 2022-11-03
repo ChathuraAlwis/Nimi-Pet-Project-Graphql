@@ -6,7 +6,7 @@ const express = require('express')
 const { ApolloServer } = require("apollo-server-express");
 const fs = require('fs');
 const path = require('path');
-const { server_config } = require('./config/server.config')
+const { server_config } = require('./config/server.config.js')
 const router = require('./routes/router')
 
 // resolvers
