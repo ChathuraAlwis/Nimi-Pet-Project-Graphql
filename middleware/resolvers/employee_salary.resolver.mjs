@@ -15,7 +15,7 @@ function streamToString (stream) {
   })
 }
 
-const emp_salary_resolvers = {
+const emp_salary_resolver = {
 
   Upload: GraphQLUpload,
 
@@ -56,4 +56,4 @@ const emp_salary_resolvers = {
   }
 }
 
-export default emp_salary_resolvers
+export default emp_salary_resolver
