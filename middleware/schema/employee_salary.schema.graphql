@@ -6,6 +6,18 @@ type Query {
 }
 
 type Mutation {
+  update(
+    id: ID!,
+    emp_id: ID,
+    emp_name: String,
+    month: Int,
+    year: Int,
+    total_salary: Float,
+    epf: Float,
+    etf: Float,
+    tax_reduction: Float,
+    other_reduction: Float
+  ): employee_salary
   delete_record(id: ID!): employee_salary
   archive(id: ID!): employee_salary
   unarchive(id:ID!): employee_salary
