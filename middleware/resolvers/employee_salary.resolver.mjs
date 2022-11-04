@@ -28,8 +28,9 @@ const emp_salary_resolver = {
           extensions:{
             success: false,
             error: {
-              statusCode: error.code || 500,
-              message: error.message || "INTERNAL_SERVER_ERROR",
+              statusCode: 500,
+              prismaErrorCode: error.code,
+              message: "INTERNAL_SERVER_ERROR",
               stack: error.stack
             },
           }
