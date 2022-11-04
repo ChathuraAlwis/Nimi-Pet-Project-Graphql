@@ -1,6 +1,5 @@
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
-
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient()
 import GraphQLUpload from 'graphql-upload/GraphQLUpload.mjs'
@@ -113,7 +112,7 @@ const emp_salary_resolver = {
     },
     unarchive: async(parent, args) => {
       try {
-        const unarchived_record = prisma.employee_salary.update({
+        const unarchived_record = await prisma.employee_salary.update({
           where: {
             id: parseInt(args.id)
           },
@@ -123,7 +122,17 @@ const emp_salary_resolver = {
         })
         return unarchived_record
       } catch (error) {
-        return null
+        throw new GraphQLError(error.meta.cause, {
+          extensions:{
+            success: false,
+            error: {
+              statusCode: 500,
+              prismaErrorCode: error.code,
+              message: "INTERNAL_SERVER_ERROR",
+              stack: error.stack
+            },
+          }
+        });
       }
     },
     upload_csv: async(parent, { file }) => {
