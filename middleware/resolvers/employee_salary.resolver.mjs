@@ -128,7 +128,17 @@ const emp_salary_resolver = {
         })
         return archived_record
       } catch (error) {
-        return null
+        throw new GraphQLError(error.meta.cause, {
+          extensions:{
+            success: false,
+            error: {
+              statusCode: 500,
+              prismaErrorCode: error.code,
+              message: "INTERNAL_SERVER_ERROR",
+              stack: error.stack
+            },
+          }
+        });
       }
     },
     unarchive: async(parent, args) => {
