@@ -48,7 +48,18 @@ const emp_salary_resolver = {
           id: parseInt(args.id)
         }
       })
-      if (!record_exists) throw new Error("Record does not exists!")
+      if (!record_exists) {
+        throw new GraphQLError("Record to download does not exists!", {
+          extensions:{
+            success: false,
+            error: {
+              statusCode: 500,
+              prismaErrorCode: "P2025",
+              message: "INTERNAL_SERVER_ERROR",
+            },
+          }
+        });
+      }
 
       const download_link = {
         url: `http://localhost:${server_config.port}/employee_salary/download/${args.id}`
