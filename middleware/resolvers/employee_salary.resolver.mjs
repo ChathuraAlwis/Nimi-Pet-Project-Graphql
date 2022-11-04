@@ -6,6 +6,7 @@ const prisma = new PrismaClient()
 import GraphQLUpload from 'graphql-upload/GraphQLUpload.mjs'
 const create_record_util = require('../../utils/create-record.util')
 const dynamic_update_data = require('../../src/utils/dynamic_update_data.util')
+import { GraphQLError } from 'graphql';
 const { server_config } = require('../../src/config/server.config')
 
 function streamToString (stream) {
@@ -61,15 +62,27 @@ const emp_salary_resolver = {
 
   Mutation: {
     update: async(parent, args) => {
-      const record_exists = await prisma.employee_salary.count({where: {id: parseInt(args.id)}})
-      if (!record_exists) throw new Error("Record doesn't exists!")
-      const updated_record = await prisma.employee_salary.update({
-        where:{
-          id: parseInt(args.id)
-        },
-        data: dynamic_update_data(args)
-      })
-      return updated_record
+      try {
+        const updated_record = await prisma.employee_salary.update({
+          where:{
+            id: parseInt(args.id)
+          },
+          data: dynamic_update_data(args)
+        })
+        return updated_record
+      } catch (error) {
+        throw new GraphQLError(error.meta.cause, {
+          extensions:{
+            success: false,
+            error: {
+              statusCode: 500,
+              prismaErrorCode: error.code,
+              message: "INTERNAL_SERVER_ERROR",
+              stack: error.stack
+            },
+          }
+        });
+      }
     },
     delete_record: async(parent, args) => {
       try {
