@@ -23,7 +23,7 @@ const emp_salary_resolver = {
         })
         return deleted_record
       } catch (error) {
-        return null
+        throw new Error("Record Does not Exist!")
       }
     }
   }
