@@ -2,6 +2,7 @@ import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient()
+import { GraphQLError } from 'graphql';
 
 
 
@@ -23,7 +24,16 @@ const emp_salary_resolver = {
         })
         return deleted_record
       } catch (error) {
-        throw new Error("Record Does not Exist!")
+        throw new GraphQLError(error.meta.cause, {
+          extensions:{
+            success: false,
+            error: {
+              statusCode: error.code || 500,
+              message: error.message || "INTERNAL_SERVER_ERROR",
+              stack: error.stack
+            },
+          }
+        });
       }
     }
   }
