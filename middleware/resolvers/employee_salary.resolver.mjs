@@ -2,7 +2,7 @@ import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient()
-
+import { GraphQLError } from 'graphql';
 
 
 const emp_salary_resolver = {
@@ -26,7 +26,17 @@ const emp_salary_resolver = {
         })
         return archived_record
       } catch (error) {
-        return null
+        throw new GraphQLError(error.meta.cause, {
+          extensions:{
+            success: false,
+            error: {
+              statusCode: 500,
+              prismaErrorCode: error.code,
+              message: "INTERNAL_SERVER_ERROR",
+              stack: error.stack
+            },
+          }
+        });
       }
     }
   }
