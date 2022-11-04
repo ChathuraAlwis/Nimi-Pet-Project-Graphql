@@ -103,7 +103,17 @@ const emp_salary_resolver = {
         })
         return deleted_record
       } catch (error) {
-        throw new Error("Record Does not Exist!")
+        throw new GraphQLError(error.meta.cause, {
+          extensions:{
+            success: false,
+            error: {
+              statusCode: 500,
+              prismaErrorCode: error.code,
+              message: "INTERNAL_SERVER_ERROR",
+              stack: error.stack
+            },
+          }
+        });
       }
     },
     archive: async(parent, args) => {
