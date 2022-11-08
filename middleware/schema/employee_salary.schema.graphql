@@ -1,8 +1,16 @@
+scalar Upload
+
 type Query {
   salary_records: [employee_salary!]!
 }
 
+type Mutation {
+  upload_csv(file: Upload!): inserted_record_count!
+}
 
+type inserted_record_count {
+  count: Int!
+}
 
 type employee_salary {
   id: ID!
