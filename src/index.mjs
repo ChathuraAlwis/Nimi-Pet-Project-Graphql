@@ -21,7 +21,6 @@ async function createApp(){
   })
   
   const app = express()
-  
   await server.start()
   server.applyMiddleware({ app })
   
