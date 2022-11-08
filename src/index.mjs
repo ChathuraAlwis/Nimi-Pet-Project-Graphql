@@ -6,7 +6,8 @@ const express = require('express')
 const { ApolloServer } = require("apollo-server-express");
 const fs = require('fs');
 const path = require('path');
-const { server_config } = require('./config/server.config.js')
+const { server_config } = require('./config/server.config')
+const router = require('./routes/router')
 
 // resolvers
 import employee_salary_resolver from '../middleware/resolvers/employee_salary.resolver.mjs'
@@ -21,6 +22,7 @@ async function createApp(){
   })
   
   const app = express()
+  app.use('/employee_salary', router)
   
   await server.start()
   server.applyMiddleware({ app })
