@@ -5,6 +5,7 @@ const prisma = new PrismaClient()
 const dynamic_update_data = require('../../src/utils/dynamic_update_data.util')
 import { GraphQLError } from 'graphql';
 
+
 const emp_salary_resolver = {
   Query: {
     salary_records: async() => {
