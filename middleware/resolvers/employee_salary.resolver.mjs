@@ -38,7 +38,7 @@ const emp_salary_resolver = {
       }
     }
   }
-
+  
 }
 
 export default emp_salary_resolver
