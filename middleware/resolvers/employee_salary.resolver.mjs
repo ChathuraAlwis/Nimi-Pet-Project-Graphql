@@ -1,6 +1,5 @@
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
-
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient()
 import GraphQLUpload from 'graphql-upload/GraphQLUpload.mjs'
@@ -24,8 +23,6 @@ const emp_salary_resolver = {
       const salary_records = await prisma.employee_salary.findMany()
       return salary_records
     },
-    
-    
   },
 
   Mutation: {
